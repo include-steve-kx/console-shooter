@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-size: 12px;
+    font-family: monospace;
+}
+
+#start-game {
+    background: orangered;
+    color: white;
+}
+
+#toggle-control-buttons {
+    color: orangered;
+}
+
+.toggle-on {
+    background-color: royalblue;
+    color: white;
+}
+
+.transparent-button {
+    background: rgba(0, 0, 0, 0);
+}
+
+#move-button-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 30vh;
+    height: 30vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5vw;
+}
+
+#attack-button-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 30vh;
+    height: 30vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 10px;
+}

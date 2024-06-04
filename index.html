@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Console shooter</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="system/constants.js" defer></script>
+    <script src="system/controlButtons.js" defer></script>
+    <script src="system/utils.js" defer></script>
+    <script src="system/math.js" defer></script>
+    <script src="system/vector2.js" defer></script>
+    <script src="system/buffer.js" defer></script>
+    <script src="system/pixel.js" defer></script>
+    <script src="system/shape.js" defer></script>
+    <script src="system/pool.js" defer></script>
+    <script src="gameObjects/gameObject.js" defer></script>
+    <script src="gameObjects/plane.js" defer></script>
+    <script src="gameObjects/bullet.js" defer></script>
+    <script src="gameObjects/missile.js" defer></script>
+    <script src="gameObjects/smoke.js" defer></script>
+    <script src="gameObjects/enemy.js" defer></script>
+    <script src="gameObjects/explosion.js" defer></script>
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <div>
+        <label for="width-slider">Game width:</label>
+        <input type="range" id="width-slider" min="40" max="200" value="80">
+        <span id="width-slider-value">80</span>
+
+        <label for="height-slider">Game height:</label>
+        <input type="range" id="height-slider" min="15" max="80" value="48">
+        <span id="height-slider-value">48</span>
+
+        <button id="dimension-reset-button">Reset to default width & height</button>
+    </div>
+    <div>
+        <label for="interval-slider">Update interval:</label>
+        <input type="range" id="interval-slider" min="50" max="500" value="100">
+        <span id="interval-slider-value">150</span>
+        <button id="interval-reset-button">Reset to default interval</button>
+
+        <button id="pause-game">Pause game</button>
+        <button id="start-game">Restart game</button>
+    </div>
+    <div>
+        <button id="toggle-html" class="toggle-on">Toggle render to HTML</button>
+        <button id="toggle-console">Toggle render to console (flash warning)</button>
+        <button id="toggle-render-style" class="toggle-on">Toggle render style</button>
+        <button id="toggle-control-buttons">Toggle control buttons</button>
+    </div>
+    <div id="game-container">Render game here</div>
+    <div id="move-button-container"></div>
+    <div id="attack-button-container"></div>
+</body>
+</html>

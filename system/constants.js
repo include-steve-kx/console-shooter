@@ -1,0 +1,14 @@
+const PLANE_COLOR = 'blue';
+const WOUNDED_COLOR = 'red';
+const INIT_SCORE = 0;
+const INIT_HP = 20;
+const INIT_BUFFER_WIDTH = 80;
+const INIT_BUFFER_HEIGHT = 48;
+const DEFAULT_INTERVAL = 100;
+const MAGIC_UNIT_SIZE = 22;
+
+window.GAME_SCORE = INIT_SCORE;
+window.GAME_HP = INIT_HP;
+window.BUFFER_WIDTH = INIT_BUFFER_WIDTH;
+window.BUFFER_HEIGHT = INIT_BUFFER_HEIGHT;
+window.FIRST_LOADED = false;
