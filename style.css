@@ -34,26 +34,26 @@ body {
     -webkit-touch-callout: none; /* Prevent callout on long press in Safari */
 }
 
-#move-button-container {
+#control-container {
     position: fixed;
-    bottom: 15vh;
-    left: 5vh;
-    width: 30vh;
+    bottom: 10vh;
+    left: 0;
+    width: 100vw;
     height: 30vh;
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 200px) 1fr;
+}
+
+#move-button-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 5vh;
+    gap: max(5vw, 5vh);
 }
 
 #attack-button-container {
-    position: fixed;
-    bottom: 5vh;
-    right: 5vh;
-    width: 30vh;
-    height: 30vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    gap: 5vh;
+    gap: max(5vw, 5vh);
 }

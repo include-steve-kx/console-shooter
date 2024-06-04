@@ -76,24 +76,6 @@ function checkEnvironment() {
         moveButtonContainer.style.display = 'none';
         attackButtonContainer.style.display = 'none';
     }
-
-    if (innerWidth >= innerHeight) {
-        moveButtonContainer.style.width = '30vw';
-        moveButtonContainer.style.gap = '6vh';
-        moveButtonContainer.style.bottom = '10vh';
-        moveButtonContainer.style.left = '5vh';
-        attackButtonContainer.style.width = '30vw';
-        attackButtonContainer.style.bottom = '5vh';
-        attackButtonContainer.style.right = '5vh';
-    } else {
-        moveButtonContainer.style.width = '30vh';
-        moveButtonContainer.style.gap = '6vw';
-        moveButtonContainer.style.bottom = '10vw';
-        moveButtonContainer.style.left = '5vw';
-        attackButtonContainer.style.width = '30vh';
-        attackButtonContainer.style.bottom = '5vw';
-        attackButtonContainer.style.right = '5vw';
-    }
 }
 
 let toggleControlButtons = document.getElementById('toggle-control-buttons');
