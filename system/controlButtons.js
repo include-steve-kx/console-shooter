@@ -79,10 +79,20 @@ function checkEnvironment() {
 
     if (innerWidth >= innerHeight) {
         moveButtonContainer.style.width = '30vw';
+        moveButtonContainer.style.gap = '6vh';
+        moveButtonContainer.style.bottom = '10vh';
+        moveButtonContainer.style.left = '5vh';
         attackButtonContainer.style.width = '30vw';
+        attackButtonContainer.style.bottom = '5vh';
+        attackButtonContainer.style.right = '5vh';
     } else {
         moveButtonContainer.style.width = '30vh';
+        moveButtonContainer.style.gap = '6vw';
+        moveButtonContainer.style.bottom = '10vw';
+        moveButtonContainer.style.left = '5vw';
         attackButtonContainer.style.width = '30vh';
+        attackButtonContainer.style.bottom = '5vw';
+        attackButtonContainer.style.right = '5vw';
     }
 }
 
@@ -94,7 +104,15 @@ function setupControlButtonListeners() {
         else toggleControlButtons.classList.remove('toggle-on');
         moveButtonContainer.style.display = isButtonVisible ? 'grid' : 'none';
         attackButtonContainer.style.display = isButtonVisible ? 'grid' : 'none';
-    })
+    });
+
+    document.addEventListener('resize', () => {
+        checkEnvironment();
+    });
+
+    document.addEventListener('orientationchange', () => {
+        checkEnvironment();
+    });
 }
 
 initButtons();

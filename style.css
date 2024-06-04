@@ -1,8 +1,11 @@
 body {
     margin: 0;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
     font-size: 12px;
     font-family: monospace;
+    touch-action: manipulation; /* Prevents double-tap to zoom */
 }
 
 #start-game {
@@ -20,29 +23,37 @@ body {
 }
 
 .transparent-button {
+    border: 2px solid black;
+    color: black;
     background: rgba(0, 0, 0, 0);
+
+    user-select: none; /* Prevent text selection */
+    -webkit-user-select: none; /* Prevent text selection in Safari */
+    -moz-user-select: none; /* Prevent text selection in Firefox */
+    -ms-user-select: none; /* Prevent text selection in Internet Explorer/Edge */
+    -webkit-touch-callout: none; /* Prevent callout on long press in Safari */
 }
 
 #move-button-container {
     position: fixed;
-    bottom: 0;
-    left: 0;
+    bottom: 15vh;
+    left: 5vh;
     width: 30vh;
     height: 30vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 5vw;
+    gap: 5vh;
 }
 
 #attack-button-container {
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 5vh;
+    right: 5vh;
     width: 30vh;
     height: 30vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    gap: 10px;
+    gap: 5vh;
 }
