@@ -29,7 +29,13 @@ function createMoveButton(angle, keys) {
     b.addEventListener('pointerdown', () => {
         keys.forEach(key => simulateKeydown(key));
     });
+    b.addEventListener('pointerover', () => {
+        keys.forEach(key => simulateKeydown(key));
+    });
     b.addEventListener('pointerup', () => {
+        keys.forEach(key => simulateKeyup(key));
+    });
+    b.addEventListener('pointerleave', () => {
         keys.forEach(key => simulateKeyup(key));
     });
     b.addEventListener('contextmenu', (e) => {

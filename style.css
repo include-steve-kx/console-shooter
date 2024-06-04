@@ -5,7 +5,8 @@ body {
     overflow: hidden;
     font-size: 12px;
     font-family: monospace;
-    touch-action: manipulation; /* Prevents double-tap to zoom */
+    touch-action: none; /* Disable browser handling of all panning and zooming gestures. */
+    -ms-touch-action: none;
 }
 
 #start-game {
