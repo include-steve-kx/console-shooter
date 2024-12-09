@@ -1,7 +1,7 @@
 class Pixel {
-    constructor(c, color = 'black') {
+    constructor(c, color = Pixel.emptyColor()) {
         if (c.length > 1) c = c[0];
-        if (c === ' ') {
+        else if (c === ' ' || c.length < 1) {
             c = Pixel.emptyContent();
             color = Pixel.emptyColor();
         }
@@ -13,15 +13,23 @@ class Pixel {
         return new Pixel(this.emptyContent(), this.emptyColor());
     }
 
+    static setEmptyContent(c) {
+        if (c.length > 1) window.PIXEL_EMPTY_CONTENT = c[0];
+        else if (c.length < 1) {
+            window.PIXEL_EMPTY_CONTENT = ' ';
+        }
+        return window.PIXEL_EMPTY_CONTENT;
+    }
+
     static emptyContent() {
-        return ' ';
+        return Pixel.setEmptyContent(window.PIXEL_EMPTY_CONTENT);
     }
 
     static emptyColor() {
-        return 'black';
+        return window.PIXEL_EMPTY_COLOR;
     }
 
-    set(c, color = 'black') {
+    set(c, color = Pixel.emptyColor()) {
         if (c.length > 1) c = c[0];
         this.c = c;
         this.color = color;

@@ -67,6 +67,12 @@ function getRandomColor(n) {
 }
 
 
+function getTrueRandomColor() {
+    return `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`;
+}
+
+
+
 function simulateKeydown(key) {
     let event = new KeyboardEvent('keydown', {
         key: key,

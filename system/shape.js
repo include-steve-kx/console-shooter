@@ -1,5 +1,5 @@
 class Shape {
-    constructor(str, color = 'black') {
+    constructor(str, color = Pixel.emptyColor()) {
         this.c = null; // shape content, a 2d array of Pixel's, [height, width]; height: top --> bottom, width: left --> right
         this.width = null;
         this.height = null;

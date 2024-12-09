@@ -12,3 +12,5 @@ window.GAME_HP = INIT_HP;
 window.BUFFER_WIDTH = INIT_BUFFER_WIDTH;
 window.BUFFER_HEIGHT = INIT_BUFFER_HEIGHT;
 window.FIRST_LOADED = false;
+window.PIXEL_EMPTY_CONTENT = ' ';
+window.PIXEL_EMPTY_COLOR = 'black';

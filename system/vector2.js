@@ -26,6 +26,10 @@ class Vector2 {
         return this;
     }
 
+    addVectors(v1, v2) {
+        return v1.clone().add(v2);
+    }
+
     negate() {
         this.x = -this.x;
         this.y = -this.y;
@@ -34,6 +38,10 @@ class Vector2 {
 
     sub(v) {
         return this.add(v.clone().negate());
+    }
+
+    subVectors(v1, v2) {
+        return v1.clone().sub(v2);
     }
 
     multiply(v) {
@@ -66,6 +74,10 @@ class Vector2 {
 
     length() {
         return Math.sqrt(this.lengthSq());
+    }
+
+    distance(v) {
+        return new Vector2().subVectors(this, v).length();
     }
 
     floor() {

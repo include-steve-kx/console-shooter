@@ -2,7 +2,8 @@ class Enemy extends GameObject {
     constructor(x, y, color = Pixel.emptyColor(), id = '', type = 'enemy') {
         super(x, y, color, id, type);
 
-        this.color = getIdColor(this.id, this.type);
+        // this.color = getIdColor(this.id, this.type);
+        this.color = getTrueRandomColor();
         this.createShape();
 
         this.targetMissile = null;

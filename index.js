@@ -123,6 +123,12 @@ function setupEventListeners() {
         heightSliderValue.textContent = `${INIT_BUFFER_HEIGHT}`;
         window.BUFFER_HEIGHT = INIT_BUFFER_HEIGHT;
     });
+    // cheat button
+    const cheatButton = document.getElementById('cheat-game');
+    cheatButton.addEventListener('pointerdown', () => {
+        window.GAME_SCORE = 9999999999;
+        window.GAME_HP = 99999;
+    });
     // start button
     const startButton = document.getElementById('start-game');
     startButton.addEventListener('pointerdown', () => {

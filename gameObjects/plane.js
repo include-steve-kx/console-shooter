@@ -23,6 +23,10 @@ class Plane extends GameObject {
         this.woundedDuration = 8;
         this.woundedTime = 0;
 
+        this.weapons = [];
+        this.weaponIndex = 0;
+        this.createWeapons();
+
         this.setupEventListeners();
     }
 
@@ -36,6 +40,21 @@ class Plane extends GameObject {
         str += '     _|||_     ';
 
         this.shape = new Shape(str, this.color);
+    }
+
+    createWeapons() { // create guns, not including the missile
+        let canonOffsetX = 0;
+        let canonOffsetY = -this.shape.center.y;
+        let canon = new Canon(canonOffsetX, canonOffsetY, this);
+        this.weapons.push(canon);
+        let triGunOffsetX = 0;
+        let triGunOffsetY = -this.shape.center.y;
+        let triGun = new TriGun(triGunOffsetX, triGunOffsetY, this);
+        this.weapons.push(triGun);
+        let omniGunOffsetX = 0;
+        let omniGunOffsetY = 0;
+        let omniGun = new OmniGun(omniGunOffsetX, omniGunOffsetY, this);
+        this.weapons.push(omniGun);
     }
 
     setupEventListeners() {
@@ -75,6 +94,14 @@ class Plane extends GameObject {
                 case 'M':
                     this.keys['m'] = true;
                     this.keys['M'] = true;
+                    break;
+                case 'q': // unlike previous keys, we want to trigger these keys discretely, instead of continuously holding them down
+                case 'Q':
+                    this.weaponIndex = (this.weaponIndex + this.weapons.length - 1) % this.weapons.length;
+                    break;
+                case 'e':
+                case 'E':
+                    this.weaponIndex = (this.weaponIndex + 1) % this.weapons.length
                     break;
                 default:
                     break;
@@ -161,7 +188,7 @@ class Plane extends GameObject {
         this.leaveSmoke();
     }
 
-    leaveSmoke(p = 0.85) { // probability
+    leaveSmoke(p = 0.5) { // probability
         for (let k = 0; k < 2; k++) {
             if (Math.random() > p) continue;
             let i, j;
@@ -182,28 +209,7 @@ class Plane extends GameObject {
     }
 
     attack() {
-        // todo Steve: add weapon: machine gun
-        // let x = this.position.x;
-        // let y = this.position.y - this.shape.center.y;
-        // let bullet = new Bullet(x, y, 0);
-        // bulletPool.set(bullet.id, bullet);
-        // todo Steve: add weapon: omni-directional machine gun
-        // for (let i = 0; i < 8; i++) {
-        //     let x = this.position.x;
-        //     let y = this.position.y;
-        //     let angle = i * 45;
-        //     let bullet = new Bullet(x, y, angle);
-        //     bulletPool.set(bullet.id, bullet);
-        // }
-        // todo Steve: add weapon: tri-directional machine gun
-        let bpx = this.position.x;
-        let bpy = this.position.y - this.shape.center.y;
-        let b1 = new Bullet(bpx, bpy, 0);
-        bulletPool.set(b1.id, b1);
-        let b2 = new Bullet(bpx - 1, bpy, 315);
-        bulletPool.set(b2.id, b2);
-        let b3 = new Bullet(bpx + 1, bpy, 45);
-        bulletPool.set(b3.id, b3);
+        this.weapons[this.weaponIndex].attack();
     }
 
     launchMissile() { // from the 4 missile launcher positions, pick a random one and spawn a missile
@@ -240,13 +246,13 @@ class Plane extends GameObject {
         if (!this.isWounded) return;
         if (this.woundedTime > this.woundedDuration) {
             this.isWounded = false;
-            plane.shape.setColor(PLANE_COLOR);
+            this.shape.setColor(PLANE_COLOR);
         }
         this.woundedTime++;
         if (this.woundedTime % 2 === 1) {
-            plane.shape.setColor(WOUNDED_COLOR);
+            this.shape.setColor(WOUNDED_COLOR);
         } else {
-            plane.shape.setColor(PLANE_COLOR);
+            this.shape.setColor(PLANE_COLOR);
         }
     }
 }

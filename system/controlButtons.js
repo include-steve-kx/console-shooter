@@ -20,6 +20,95 @@ function initButtons() {
     let missileButton = createAttackButton('MISSILE', ['m']);
 }
 
+let activeButton = null;
+// const buttons = [...document.getElementsByClassName('touchButton')];
+//
+//
+// addButtonTouchSlideListener1(buttons[0]);
+// addButtonTouchSlideListener1(buttons[1]);
+// addButtonTouchSlideListener1(buttons[2]);
+// function addButtonTouchSlideListener1(button) {
+//
+//     button.addEventListener('touchstart', function (event) {
+//         activeButton = button;
+//         button.classList.add('active');
+//         console.log(button.textContent + ' activated');
+//         event.preventDefault();
+//     });
+//
+//     button.addEventListener('touchend', function (event) {
+//         if (activeButton === button) {
+//             activeButton.classList.remove('active');
+//             console.log(button.textContent + ' deactivated');
+//             activeButton = null;
+//             event.preventDefault();
+//         }
+//     });
+// }
+
+
+// function addButtonTouchSlideListener2() {
+//     document.addEventListener('touchmove', function(event) {
+//         const touch = event.touches[0];
+//         const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
+//
+//         if (activeButton && targetElement !== activeButton) {
+//             activeButton.classList.remove('active');
+//             console.log(activeButton.textContent + ' deactivated');
+//             activeButton = null;
+//         }
+//
+//         if (!activeButton && targetElement && targetElement.classList.contains('touchButton')) {
+//             activeButton = targetElement;
+//             activeButton.classList.add('active');
+//             console.log(activeButton.textContent + ' activated');
+//         }
+//
+//         event.preventDefault();
+//     }, { passive: false });
+//
+//     document.addEventListener('touchend', function(event) {
+//         if (activeButton) {
+//             activeButton.classList.remove('active');
+//             console.log(activeButton.textContent + ' deactivated');
+//             activeButton = null;
+//             event.preventDefault();
+//         }
+//     });
+// }
+// addButtonTouchSlideListener2();
+
+function addButtonTouchSlideListener3() {
+    document.addEventListener('touchmove', function(event) {
+        const touch = event.touches[0];
+        const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
+
+        if (activeButton && targetElement !== activeButton) {
+            activeButton.classList.remove('active');
+            console.log(activeButton.textContent + ' deactivated');
+            activeButton = null;
+        }
+
+        if (!activeButton && targetElement && targetElement.classList.contains('touchButton')) {
+            activeButton = targetElement;
+            activeButton.classList.add('active');
+            console.log(activeButton.textContent + ' activated');
+        }
+
+        event.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('touchend', function(event) {
+        if (activeButton) {
+            activeButton.classList.remove('active');
+            console.log(activeButton.textContent + ' deactivated');
+            activeButton = null;
+            event.preventDefault();
+        }
+    });
+}
+addButtonTouchSlideListener3();
+
 function createMoveButton(angle, keys) {
     let b = document.createElement('button');
     b.classList.add('transparent-button');
@@ -29,18 +118,31 @@ function createMoveButton(angle, keys) {
     b.addEventListener('pointerdown', () => {
         keys.forEach(key => simulateKeydown(key));
     });
-    b.addEventListener('pointerover', () => {
-        keys.forEach(key => simulateKeydown(key));
-    });
     b.addEventListener('pointerup', () => {
-        keys.forEach(key => simulateKeyup(key));
-    });
-    b.addEventListener('pointerleave', () => {
         keys.forEach(key => simulateKeyup(key));
     });
     b.addEventListener('contextmenu', (e) => {
         e.preventDefault();
     })
+
+    b.addEventListener('touchstart', function (event) {
+        activeButton = b;
+        b.classList.add('active');
+        // console.log(b.textContent + ' activated');
+        keys.forEach(key => simulateKeydown(key));
+        event.preventDefault();
+    });
+
+    b.addEventListener('touchend', function (event) {
+        if (activeButton === b) {
+            activeButton.classList.remove('active');
+            // console.log(b.textContent + ' deactivated');
+            keys.forEach(key => simulateKeyup(key));
+            activeButton = null;
+            event.preventDefault();
+        }
+    });
+
     return b;
 }
 
@@ -100,6 +202,30 @@ function setupControlButtonListeners() {
 
     document.addEventListener('orientationchange', () => {
         checkEnvironment();
+    });
+
+    document.addEventListener('touchstart', function(event) {
+        if (event.touches.length > 1) {
+            event.preventDefault(); // Prevent multi-touch gestures
+        }
+    }, { passive: false });
+
+    document.addEventListener('touchmove', function(event) {
+        if (event.touches.length > 1) {
+            event.preventDefault(); // Prevent multi-touch gestures
+        }
+    }, { passive: false });
+
+    document.addEventListener('gesturestart', function(event) {
+        event.preventDefault(); // Prevent pinch-to-zoom
+    });
+
+    document.addEventListener('gesturechange', function(event) {
+        event.preventDefault(); // Prevent pinch-to-zoom
+    });
+
+    document.addEventListener('gestureend', function(event) {
+        event.preventDefault(); // Prevent pinch-to-zoom
     });
 }
 

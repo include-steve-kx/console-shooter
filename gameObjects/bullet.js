@@ -2,7 +2,8 @@ class Bullet extends GameObject {
     constructor(x, y, angle = 0, color = Pixel.emptyColor(), id = '', type = 'bullet') {
         super(x, y, color, id, type);
 
-        this.color = getIdColor(this.id, this.type);
+        // this.color = getIdColor(this.id, this.type);
+        this.color = getTrueRandomColor();
         this.angle = angle;
         if (this.angle < 0 || this.angle > 315 || this.angle % 45 !== 0) console.error('Bullet angle error: cannot spawn such bullet');
         this.createShape(); // should call this again, b/c in super.createShape(), it doesn't know this.angle, so cannot create any bullet shapes

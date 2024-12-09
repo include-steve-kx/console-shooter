@@ -27,10 +27,10 @@ class Buffer {
         clearConsole();
     }
 
-    clearAll() {
+    clearAll(c = Pixel.emptyContent(), color = Pixel.emptyColor()) {
         for (let i = 0; i < this.height; i++) {
             for (let j = 0; j < this.width; j++) {
-                this.b[i][j].set(Pixel.emptyContent(), Pixel.emptyColor());
+                this.b[i][j].set(c, color);
             }
         }
         if (this.isDrawToConsole) {
@@ -126,9 +126,10 @@ class Buffer {
         // bottom info
         let bottom = this.topfix('green');
         allStr += `${bottom}`;
-        let weapon = this.customfix('  SPACE -- TRI-DIRECTIONAL MACHINE GUN; M -- MISSILE LAUNCHER  ', true, 'darkred');
+        let currentWeapon = plane ? plane.weapons[plane.weaponIndex].type.toUpperCase() : '';
+        let weapon = this.customfix(`  SPACE -- ${currentWeapon}; M -- MISSILE LAUNCHER  `, true, 'darkred');
         allStr += `${weapon}`;
-        let manual = this.customfix('  WASD -- MOVE; SHIFT -- ACCELERATE; P -- PAUSE  ', true, 'darkred');
+        let manual = this.customfix('  WASD -- MOVE; QE -- CHANGE WEAPON; SHIFT -- ACCELERATE; P -- PAUSE  ', true, 'darkred');
         allStr += `${manual}`;
 
         if (this.isDrawToHTML) this.drawToHTML(allStr);

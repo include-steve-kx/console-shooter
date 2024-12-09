@@ -51,7 +51,7 @@ function enemyCheckCollision(enemy) {
         let collideInfo = enemy.isCollided(bullet);
         if (!collideInfo.isCollided) return;
         enemy.delete();
-        bullet.delete();
+        if (bullet.type === 'bullet') bullet.delete(); // if is a bulletBig, then don't delete the bullet
         // add explosion
         let explosion = new Explosion(collideInfo.position.x, collideInfo.position.y, bullet.color);
         explosionPool.set(explosion.id, explosion);
