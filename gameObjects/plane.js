@@ -43,10 +43,6 @@ class Plane extends GameObject {
     }
 
     createWeapons() { // create guns, not including the missile
-        let canonOffsetX = 0;
-        let canonOffsetY = -this.shape.center.y;
-        let canon = new Canon(canonOffsetX, canonOffsetY, this);
-        this.weapons.push(canon);
         let triGunOffsetX = 0;
         let triGunOffsetY = -this.shape.center.y;
         let triGun = new TriGun(triGunOffsetX, triGunOffsetY, this);
@@ -55,6 +51,10 @@ class Plane extends GameObject {
         let omniGunOffsetY = 0;
         let omniGun = new OmniGun(omniGunOffsetX, omniGunOffsetY, this);
         this.weapons.push(omniGun);
+        let canonOffsetX = 0;
+        let canonOffsetY = -this.shape.center.y;
+        let canon = new Canon(canonOffsetX, canonOffsetY, this);
+        this.weapons.push(canon);
     }
 
     setupEventListeners() {
